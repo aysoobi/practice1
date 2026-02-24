@@ -1,0 +1,16 @@
+server:
+  port: 1414
+
+spring:
+  application:
+    name: module5
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
