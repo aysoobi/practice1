@@ -50,6 +50,13 @@
                                    th:value="${food.price}" required>
                         </div>
 
+                        <div class="form-floating mb-3">
+                            <!-- Выборка. С ее помощью можно выбрать страну-производителя для машины -->
+                            <select class="form-select" id="country_id" aria-label="country_id" name="country_id" required>
+                                <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.name + ' / ' + country.code}"  th:selected="${food.manufacturer != null && country.id.equals(food.manufacturer.id)}"></option>
+                            </select>
+                            <label for="country_id">Country-manufacturer</label>
+                        </div>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary btn-lg">Update Changes</button>
                             <a th:href="@{'/food/main'}" class="btn btn-link text-secondary text-decoration-none">Cancel</a>
