@@ -15,6 +15,7 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link active" th:href="@{'/food/main'}">All List</a></li>
         <li class="nav-item"><a class="nav-link" th:href="@{'/food/add'}">Add New+</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{'/country/'}">Add New Country</a></li>
       </ul>
     </div>
   </div>
@@ -36,6 +37,7 @@
           <th>Calories</th>
           <th>Amount</th>
           <th>Price</th>
+          <th>Country-manufacturer</th>
           <th class="text-center">Actions</th>
         </tr>
         </thead>
@@ -46,12 +48,14 @@
           <td class="align-middle" th:text="${f.calories}"></td>
           <td class="align-middle" th:text="${f.amount}"></td>
           <td class="align-middle" th:text="${f.price} + ' $'"></td>
+
+          <td class="align-middle">
+            <span th:if="${f.manufacturer != null}" th:text="${f.manufacturer.name + '/' + f.manufacturer.code}"></span>
+            <i th:unless="${f.manufacturer != null}" class="text-secondary">UNKNOWN</i>
+          </td>
           <td class="text-center">
 
-<!--            <a th:href="@{'/update(id=${f.id})'}" class="btn btn-primary btn-sm">Edit</a>-->
-<!--            <a th:href="@{'/item/' + ${i.getId()}}">details</a>-->
-
-            <a th:href="@{'/food/update/' + ${f.getId()}}">details</a>
+          <a th:href="@{'/food/update/' + ${f.getId()}}">details</a>
 
             <form th:action="@{'/food/delete/' + ${f.id}}" method="post" style="display:inline;">
               <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete this item?')">Delete</button>

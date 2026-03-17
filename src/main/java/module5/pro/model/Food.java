@@ -28,4 +28,8 @@ public class Food {
     @Column(name="price")
     private int price;
 
+    @JoinColumn(name="Manufacturer manufacturer")
+    @ManyToOne(fetch=FetchType.LAZY)
+    private Manufacturer manufacturer;
+
 }
