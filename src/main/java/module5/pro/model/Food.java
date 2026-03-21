@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,5 +33,8 @@ public class Food {
     @JoinColumn(name="Manufacturer manufacturer")
     @ManyToOne(fetch=FetchType.LAZY)
     private Manufacturer manufacturer;
+
+    @ManyToMany(fetch=FetchType.LAZY)
+    private List<Category> categories;
 
 }
