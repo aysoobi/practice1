@@ -51,17 +51,55 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <!-- Выборка. С ее помощью можно выбрать страну-производителя для машины -->
                             <select class="form-select" id="country_id" aria-label="country_id" name="country_id" required>
                                 <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.name + ' / ' + country.code}"  th:selected="${food.manufacturer != null && country.id.equals(food.manufacturer.id)}"></option>
                             </select>
                             <label for="country_id">Country-manufacturer</label>
                         </div>
+
+
+
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-primary btn-lg">Update Changes</button>
                             <a th:href="@{'/food/main'}" class="btn btn-link text-secondary text-decoration-none">Cancel</a>
                         </div>
                     </form>
+
+                    <h5 class="mt-4 mb-3 text-secondary">Assigned Categories</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <div th:each="category : ${food.categories}">
+                            <form method="post" th:action="@{'/food/unassigncategory'}" class="m-0">
+                                <input type="hidden" name="category_id" th:value="${category.id}">
+                                <input type="hidden" name="food_id" th:value="${food.id}">
+
+                                <div class="btn-group shadow-sm" role="group">
+                <span class="btn btn-outline-danger btn-sm disabled text-dark border-end-0"
+                      th:text="${category.name}" style="opacity: 1;">Category</span>
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                            title="Remove Category">
+                                        <i class="bi bi-x">&times;</i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <hr class="my-4 opacity-25">
+
+                    <h5 class="mb-3 text-secondary">Available Categories</h5>
+                    <div class="d-flex flex-wrap gap-2">
+                        <div th:each="category : ${categories}">
+                            <form method="post" th:action="@{'/food/assigncategory'}" class="m-0">
+                                <input type="hidden" name="category_id" th:value="${category.id}">
+                                <input type="hidden" name="food_id" th:value="${food.id}">
+
+                                <button type="submit" class="btn btn-outline-success btn-sm rounded-pill px-3">
+                                    + <span th:text="${category.name}">Category</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
