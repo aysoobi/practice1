@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <select class="form-select" id="country_id" aria-label="country_id" name="country_id" required>
+                            <select class="form-select" id="country_id" aria-label="country_id" name="manufacturer.id" required>
                                 <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.name + ' / ' + country.code}"  th:selected="${food.manufacturer != null && country.id.equals(food.manufacturer.id)}"></option>
                             </select>
                             <label for="country_id">Country-manufacturer</label>
