@@ -44,7 +44,7 @@
             </div>
 
             <div class="form-floating mb-3">
-              <select class="form-select" id="country_id" aria-label="country_id" name="country_id" required>
+              <select class="form-select" id="country_id" aria-label="country_id" name="manufacturer.id" required>
                 <option th:each="country : ${countries}" th:value="${country.id}" th:text="${country.name + ' / ' + country.code}"></option>
               </select>
               <label for="country_id">Country-manufacturer</label>
@@ -60,7 +60,7 @@
                 <div class="col-md-4 mb-2" th:each="cat : ${categories}">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox"
-                           name="categoryIds"
+                           name="categories"
                            th:value="${cat.id}"
                            th:id="${'cat_' + cat.id}">
                     <label class="form-check-label" th:for="${'cat_' + cat.id}" th:text="${cat.name}"></label>

@@ -3,6 +3,7 @@ package module5.pro.api;
 import lombok.RequiredArgsConstructor;
 import module5.pro.model.Manufacturer;
 import module5.pro.repository.ManufacturerRepo;
+import module5.pro.services.CountryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 @RequestMapping("/country")
 public class ManufacturerApi {
-    private final ManufacturerRepo manufacturerRepo;
+    private final CountryService countryService;
 
     @GetMapping("/")
     public String addManufacturer(){
@@ -26,7 +27,7 @@ public class ManufacturerApi {
         Manufacturer manufacturer=new Manufacturer();
         manufacturer.setName(name);
         manufacturer.setCode(code);
-        manufacturerRepo.save(manufacturer);
+        countryService.addCountry(manufacturer);
         return "redirect:/food/main";
     }
 }
